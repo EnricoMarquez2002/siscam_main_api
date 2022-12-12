@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from pydantic import EmailStr,
+from pydantic import EmailStr
 from base_app.entities import BaseEntitie
 
 
