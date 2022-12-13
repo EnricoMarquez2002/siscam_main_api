@@ -1,6 +1,7 @@
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from base_app.entities import BaseEntitie
+from address.entities import endereco
 
 
 class Usuario(BaseEntitie):
@@ -13,4 +14,9 @@ class Usuario(BaseEntitie):
     hashed_password = Column(String(300), nullable=True)
     acess_token = Column(String(300), nullable=True)
     refresh_token = Column(String(300), nullable=True)
-    cep_id = Column(ForeignKey('address_endereco.cep'))
+    cep_id = Column(Integer, ForeignKey('address_endereco.cep'))
+
+    endereco = relationship("Endereco", back_populates="usuario")
+
+
+

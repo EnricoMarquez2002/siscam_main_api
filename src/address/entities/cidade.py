@@ -7,5 +7,5 @@ class Cidade(BaseEntitie):
 
     cidade_id = Column(Integer, auto_increment=True)
     cidade = Column(String(100))
-    uf_id = Column(ForeignKey('address_uf.uf_id'))
+    uf_id = Column(Integer, ForeignKey('address_uf.uf_id'))
 

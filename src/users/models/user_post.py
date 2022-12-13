@@ -1,9 +1,10 @@
 from .user_base import UserModelBase
+from typing import Optional
 
 
 class UserModelPost(UserModelBase):
     hashed_password: str
-    cep: str
+    cep_id: Optional[int]
 
     class Config:
         schema_extra = {
@@ -12,6 +13,6 @@ class UserModelPost(UserModelBase):
                 "sobrenome": "sobrenome",
                 "email": "email@exemplo.com",
                 "hashed_password": "senha",
-                "cep": "12345-678"
+                "cep_id": "12345-678"
             }
         }
