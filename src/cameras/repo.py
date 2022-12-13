@@ -1,6 +1,7 @@
 from database.config import DBConnectionHandler
 from cameras.entities.camera import Camera
 from cameras.entities import camera
+from fastapi import HTTPException, status
 
 
 class CameraRepo():
@@ -18,3 +19,16 @@ class CameraRepo():
             .all()
         
             return all_cameras
+
+    @classmethod
+    def read_camera(cls, camera_url: str):
+        with DBConnectionHandler() as db_connection:
+
+            camera_info = db_connection.session.query(camera.Camera)\
+            .filter(camera.Camera.url_camera == camera_url)\
+            .first()
+
+            if camera_info is None:
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Camera not found")
+            else:
+                return camera_info

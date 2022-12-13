@@ -7,7 +7,7 @@ from address.entities import endereco
 class Camera(BaseEntitie):
     __tablename__ = 'cameras_camera'
 
-    id_camera = Column(Integer, auto_increment=True, primary_key=True)
+    id_camera = Column(Integer, primary_key=True)
     url_camera = Column(String(200))
     cep_id = Column(ForeignKey('address_endereco.cep'))
 
