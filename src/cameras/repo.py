@@ -10,13 +10,11 @@ class CameraRepo():
     def read_by_address(cls, cep: str):
         with DBConnectionHandler() as db_connection:
             
-            all_cameras = db_connection.session.query(
+            return db_connection.session.query(
                 camera.Camera.id_camera
             )\
             .filter(camera.Camera.cep_id == cep)\
             .all()
-        
-            return all_cameras
 
     @classmethod
     def read_camera(cls, id_camera: int):

@@ -1,13 +1,12 @@
 from .repo import UsuarioRepo
 from .models.user_post import UserModelPost
-from fastapi import HTTPException, status
+
 
 
 class GetAllUsersUseCase():
 
     def execute():
-        all = UsuarioRepo.get_all()
-        return all
+        return UsuarioRepo.get_all()
 
 class PostUserUseCase():
 

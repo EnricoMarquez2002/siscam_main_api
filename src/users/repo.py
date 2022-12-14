@@ -13,7 +13,7 @@ class UsuarioRepo():
     def get_all(cls):
         with DBConnectionHandler() as db_connection:
 
-            all = db_connection.session.query(
+            return  db_connection.session.query(
                 entities.Usuario.nome,
                 entities.Usuario.sobrenome,
                 entities.Usuario.email,
@@ -21,17 +21,19 @@ class UsuarioRepo():
             )\
             .all()
 
-            return all
-
     @classmethod
     def get_user_by_id(cls, user: str):
         with DBConnectionHandler() as db_connection:
 
-            user_info = db_connection.session.query(entities.Usuario)\
+            return db_connection.session.query(
+                entities.Usuario.data_criacao,
+                entities.Usuario.nome,
+                entities.Usuario.sobrenome,
+                entities.Usuario.email,
+                entities.Usuario.cep_id
+            )\
             .filter(entities.Usuario.id_usuario == user)\
             .first()
-
-            return user_info
 
     @classmethod
     def post_user(cls, user: UserModelPost):

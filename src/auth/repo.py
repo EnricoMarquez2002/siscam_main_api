@@ -10,21 +10,17 @@ class AuthRepo():
     def get_user_by_email(cls, email: EmailStr):
         with DBConnectionHandler() as db_connection:
 
-         user = db_connection.session.query(entities.Usuario)\
+         return db_connection.session.query(entities.Usuario)\
         .filter(entities.Usuario.email == email)\
         .first()
-
-        return user
     
     @classmethod
     def get_user_by_token(cls, acess_token: str):
         with DBConnectionHandler() as db_connection:
 
-         user = db_connection.session.query(entities.Usuario)\
+         return db_connection.session.query(entities.Usuario)\
         .filter(entities.Usuario.acess_token == acess_token)\
         .first()
-
-        return user
 
     @classmethod
     def update_acess_token(cls, email: EmailStr, token: str):

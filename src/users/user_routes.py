@@ -17,9 +17,6 @@ async def get_all():
 async def read_me(user: str = Depends(JWTBearer())):
     return ReadMeUseCase.execute(user)
     
-
-
-
 @router.post('', status_code=201)
 async def create_user(user: UserModelPost):
     return PostUserUseCase.execute(user)
