@@ -1,6 +1,7 @@
 from fastapi import APIRouter
-from .domain import UserLoginUseCase
+from .domain import UserLoginUseCase, UserRefreshSessionUseCase
 from pydantic import EmailStr
+from .models.acess_token import AcessTokenModel
 
 
 router = APIRouter(
@@ -10,6 +11,8 @@ router = APIRouter(
 
 @router.post('/token')
 async def authenticate(email: EmailStr, password: str):
-    user = UserLoginUseCase.execute(email, password)
-    return user
+    return UserLoginUseCase.execute(email, password)
     
+@router.post('/refresh')
+async def refresh_session(acess_token: str):
+    return UserRefreshSessionUseCase.execute(acess_token)

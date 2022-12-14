@@ -1,10 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from .domain import GetCamerasByAddressUseCase, GetCameraByUrlUseCase
+from base_app.security.auth_bearer import JWTBearer
 
 
 router = APIRouter(
     prefix="/camera",
-    tags= ["Cameras"]
+    tags= ["Cameras"],
+    dependencies=[Depends(JWTBearer())]
 )
 
 @router.get('s/{cep}', status_code=200)
