@@ -2,8 +2,10 @@ from fastapi import HTTPException, status
 from database.config import DBConnectionHandler
 from users import entities
 from .models.user_post import UserModelPost
+from base_app.security.bcrypt import get_password_hash
 import datetime
 import uuid
+
 
 
 class UsuarioRepo():
@@ -34,7 +36,10 @@ class UsuarioRepo():
             new_user.nome = user.nome.capitalize()
             new_user.sobrenome = user.sobrenome.capitalize()
             new_user.email = user.email
-            new_user.hashed_password = user.hashed_password
+
+            hashed_password = get_password_hash(user.hashed_password)
+            new_user.hashed_password = hashed_password
+
             new_user.cep_id = user.cep_id
 
             db_connection.session.add(new_user)
