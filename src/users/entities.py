@@ -14,7 +14,7 @@ class Usuario(BaseEntitie):
     hashed_password = Column(String(300), nullable=True)
     acess_token = Column(String(300), nullable=True)
     refresh_token = Column(String(300), nullable=True)
-    cep_id = Column(Integer, ForeignKey('address_endereco.cep'))
+    cep_id = Column(String, ForeignKey('address_endereco.cep'))
 
     endereco = relationship("Endereco", back_populates="usuario")
 

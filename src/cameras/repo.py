@@ -7,13 +7,11 @@ from fastapi import HTTPException, status
 class CameraRepo():
 
     @classmethod
-    def read_by_address(cls, cep: int):
+    def read_by_address(cls, cep: str):
         with DBConnectionHandler() as db_connection:
             
             all_cameras = db_connection.session.query(
-                camera.Camera.ativo,
-                camera.Camera.url_camera,
-                camera.Camera.cep_id
+                camera.Camera.id_camera
             )\
             .filter(camera.Camera.cep_id == cep)\
             .all()

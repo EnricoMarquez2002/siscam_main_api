@@ -10,7 +10,7 @@ router = APIRouter(
 )
 
 @router.get('s/{cep}', status_code=200)
-async def read_cameras_by_address(cep: int):
+async def read_cameras_by_address(cep: str):
     all_cameras = GetCamerasByAddressUseCase.execute(cep)
     return all_cameras
 

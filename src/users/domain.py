@@ -12,7 +12,12 @@ class GetAllUsersUseCase():
 class PostUserUseCase():
 
     def execute(user: UserModelPost):
-        UsuarioRepo.post_user(user)
+        return UsuarioRepo.post_user(user)
+
+class ReadMeUseCase():
+
+    def execute(user: str):
+        return UsuarioRepo.get_user_by_id(user)
             
             
                 

@@ -7,7 +7,6 @@ import datetime
 import uuid
 
 
-
 class UsuarioRepo():
 
     @classmethod
@@ -23,6 +22,16 @@ class UsuarioRepo():
             .all()
 
             return all
+
+    @classmethod
+    def get_user_by_id(cls, user: str):
+        with DBConnectionHandler() as db_connection:
+
+            user_info = db_connection.session.query(entities.Usuario)\
+            .filter(entities.Usuario.id_usuario == user)\
+            .first()
+
+            return user_info
 
     @classmethod
     def post_user(cls, user: UserModelPost):

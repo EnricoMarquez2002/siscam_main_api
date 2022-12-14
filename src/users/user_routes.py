@@ -1,6 +1,7 @@
-from fastapi import APIRouter
-from .domain import GetAllUsersUseCase, PostUserUseCase
+from fastapi import APIRouter, Depends
+from .domain import GetAllUsersUseCase, PostUserUseCase, ReadMeUseCase
 from .models.user_post import UserModelPost
+from base_app.security.auth_bearer import JWTBearer
 
 
 router = APIRouter(
@@ -10,11 +11,19 @@ router = APIRouter(
 
 @router.get('s', status_code=200)
 async def get_all():
-    all_users = GetAllUsersUseCase.execute()
-    return all_users
+    return GetAllUsersUseCase.execute()
+
+@router.get('/me')
+async def read_me(user: str = Depends(JWTBearer())):
+    return ReadMeUseCase.execute(user)
+    
+
+
 
 @router.post('', status_code=201)
 async def create_user(user: UserModelPost):
-    PostUserUseCase.execute(user)
+    return PostUserUseCase.execute(user)
+
+
     
 

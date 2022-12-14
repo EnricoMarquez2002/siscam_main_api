@@ -3,7 +3,7 @@ from .repo import CameraRepo
 
 class GetCamerasByAddressUseCase():
 
-    def execute(cep: int):
+    def execute(cep: str):
         all_cameras = CameraRepo.read_by_address(cep)
         return all_cameras
 

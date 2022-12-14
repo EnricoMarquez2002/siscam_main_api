@@ -6,7 +6,7 @@ import re
 
 class UserModelPost(UserModelBase):
     hashed_password: str
-    cep_id: int
+    cep_id: str
 
     class Config:
         schema_extra = {
@@ -15,7 +15,7 @@ class UserModelPost(UserModelBase):
                 "sobrenome": "sobrenome",
                 "email": "email@exemplo.com",
                 "hashed_password": "senha",
-                "cep_id": 12345678
+                "cep_id": "12345678"
             }
         }
 
