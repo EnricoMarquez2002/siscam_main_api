@@ -30,8 +30,8 @@ def create_acess_token(email: EmailStr, user_id: str, expires_delta: Optional[ti
         "type": "Bearer"
     }
 
-def create_refresh_token(email: EmailStr, sobrenome: str, expires_delta: Optional[timedelta] = None):
-    encode = {"sub": email, "lstn": sobrenome}
+def create_refresh_token(email: EmailStr, user_id: str, expires_delta: Optional[timedelta] = None):
+    encode = {"sub": email, "id": user_id}
     if expires_delta:
         expire = datetime.now(tz=sp) + expires_delta
     else:

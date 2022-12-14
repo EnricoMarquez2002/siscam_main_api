@@ -9,6 +9,6 @@ class GetCamerasByAddressUseCase():
 
 class GetCameraByUrlUseCase():
 
-    def execute(camera_url: str):
-        camera_info = CameraRepo.read_camera(camera_url)
-        return camera_info
+    def execute(id_camera: int):
+        return CameraRepo.read_camera(id_camera)
+        

@@ -22,8 +22,16 @@ class UserLoginUseCase():
 class UserRefreshSessionUseCase():
     def execute(acess_token: str):
         refresh = jwt.decode(acess_token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-        if refresh:
-            AuthRepo.get_user_by_token(acess_token)
-            return create_acess_token(refresh.get("sub"), refresh.get("id")), create_refresh_token(refresh.get("sub"), refresh.get("lstn"))
 
+        if refresh:
+            AuthRepo.get_user_by_token(acess_token) 
+            
+            access_token = create_acess_token(refresh.get("sub"), refresh.get("id"))
+            refresh_token = create_refresh_token(refresh.get("sub"), refresh.get("id"))
+            
+            access_token.update(refresh_token)
+
+            return access_token
+
+            
 

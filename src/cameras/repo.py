@@ -21,11 +21,16 @@ class CameraRepo():
             return all_cameras
 
     @classmethod
-    def read_camera(cls, camera_url: str):
+    def read_camera(cls, id_camera: int):
         with DBConnectionHandler() as db_connection:
 
-            camera_info = db_connection.session.query(camera.Camera)\
-            .filter(camera.Camera.url_camera == camera_url)\
+            camera_info = db_connection.session.query(
+                camera.Camera.ativo,
+                camera.Camera.data_criacao,
+                camera.Camera.url_camera,
+                camera.Camera.cep_id
+            )\
+            .filter(camera.Camera.id_camera == id_camera)\
             .first()
 
             if camera_info is None:

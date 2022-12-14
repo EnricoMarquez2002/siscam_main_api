@@ -6,7 +6,7 @@ import re
 
 class UserModelPost(UserModelBase):
     hashed_password: str
-    cep_id: Optional[int]
+    cep_id: int
 
     class Config:
         schema_extra = {
